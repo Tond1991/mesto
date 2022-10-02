@@ -1,0 +1,9 @@
+.photo__cell {
+    max-width: 282px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+

@@ -1,0 +1,9 @@
+.photo__content {
+    width: 246px;
+    margin: 25px auto 31px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

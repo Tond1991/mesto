@@ -1,0 +1,14 @@
+.modal__name {
+    width: 350px;
+    margin: 0 0 30px;
+    padding: 5px 4px 14px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.modal__name:focus {
+    outline-color: rgb(143, 143, 143);
+}

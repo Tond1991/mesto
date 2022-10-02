@@ -1,0 +1,18 @@
+.photo__icon {
+    background-image: url(../../../images/photo__icon.svg);
+    width: 25px;
+    height: 19px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+.photo__icon:hover {
+    opacity: .6;
+}

@@ -1,0 +1,11 @@
+.modal__content {
+    margin: 195px auto 0;
+    max-width: 430px;
+    min-height: 330px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    border-radius: 10px;
+}
