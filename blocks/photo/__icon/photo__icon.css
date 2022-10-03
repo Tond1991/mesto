@@ -7,10 +7,9 @@
     margin: 0;
     padding: 0;
     border: 0;
-    background-color: #fff;
-    color: #000;
     cursor: pointer;
     transition: opacity 1s ease;
+    background-color: transparent;
 }
 
 .photo__icon:hover {

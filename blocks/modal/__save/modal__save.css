@@ -4,4 +4,17 @@
     height: 50px;
     background-color: #000;
     color: #fff;
+    transition: opacity .5s ease;
+    cursor: pointer;
+}
+
+.modal__save:hover {
+    opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+    .modal__save {
+        width: 238px;
+        height: 46px;
+    }
 }

@@ -31,6 +31,7 @@
 @import url(../blocks/photo/__table/photo__table.css);
 @import url(../blocks/photo/__title/photo__title.css);
 @import url(../blocks/photo/__content/photo__content.css);
+@import url(../blocks/photo/__icon/_red/photo__icon_red.css);
 
 /* footer */
 @import url(../blocks/footer/footer.css);

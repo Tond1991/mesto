@@ -7,3 +7,11 @@
     margin: 34px 0 32px;
     padding: 0;
 }
+
+@media screen and (max-width: 767px) {
+    .modal__title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    
+}

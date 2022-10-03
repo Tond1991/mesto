@@ -20,7 +20,8 @@
             <section class="profile">
                 <img src="./images/profile__img.jpg" class="profile__image" alt="Ваше фото">
                 <div class="profile__content">
-                    <h1 class="profile__name">Жак-Ив Кусто<button class="profile__editing"></button></h1>
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__editing"></button>
                     <p class="profile__profession">Исследователь океана</p>
                 </div>
                 <button class="profile__button">+</button>
@@ -85,11 +86,11 @@
         
         <section class="modal">
             <form class="modal__content">
-                <button class="modal__close"></button>
+                <div class="modal__close"></div>
                 <h2 class="modal__title">Редактировать профиль</h2>
                 <input type="text" name="name" placeholder="Введите ваше Имя" class="modal__name">
                 <input type="text" name="name" placeholder="Введите вашу профессию" class="modal__profession">
-                <button class="modal__save">Сохранить</button>
+                <button type="submit" class="modal__save">Сохранить</button>
             </form>
         </section>
     </div>

@@ -10,6 +10,9 @@
     padding: 0;    
     transition: opacity 1s ease;
     cursor: pointer;
+    grid-area: editing;
+    align-self: center;
+
 }
 
 .profile__editing:hover {
