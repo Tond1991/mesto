@@ -8,10 +8,16 @@
     padding: 0;
     border: 0;
     cursor: pointer;
-    transition: opacity 1s ease;
+    transition: opacity .5s ease;
     background-color: transparent;
+    
 }
 
 .photo__icon:hover {
-    opacity: .6;
+    opacity: .5;
+}
+
+.photo__icon:active {
+    opacity: 1;
+    background-image: url(../../../images/photo__icon_active.svg);
 }

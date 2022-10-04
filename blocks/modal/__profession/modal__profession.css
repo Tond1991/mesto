@@ -1,5 +1,5 @@
 .modal__profession {
-    margin: 0;
+    margin: 0 0 48px;
     padding: 5px 4px 14px;
     width: 350px;
     border: none;
@@ -15,6 +15,7 @@
 
 @media screen and (max-width: 767px) {
     .modal__profession {
+        margin-bottom: 45px;
         width: 238px;
 
     }

@@ -1,0 +1,13 @@
+.modal__form {
+    margin: 0;
+    padding: 0;
+    max-width: 358px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width:767px) {
+    .modal__form {
+        max-width: 238px;
+    }
+    
+}

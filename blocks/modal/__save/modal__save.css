@@ -1,5 +1,6 @@
 .modal__save {
-    margin: 48px 0 0;
+    margin: 0 0 37px;
+    padding: 0;
     width: 358px;
     height: 50px;
     background-color: #000;
@@ -9,11 +10,12 @@
 }
 
 .modal__save:hover {
-    opacity: .6;
+    opacity: .8;
 }
 
 @media screen and (max-width: 767px) {
     .modal__save {
+        margin-bottom: 25px;
         width: 238px;
         height: 46px;
     }

@@ -2,6 +2,7 @@
     background-image: url(../../../images/modal__close.svg);
     width: 32px;
     height: 32px;
+    background-size: cover;
     background-repeat: no-repeat;
     border: none;
     position: absolute;
@@ -10,6 +11,7 @@
     background-color: transparent;
     cursor: pointer;
     transition: opacity 0.5s ease;
+    border-radius: 2px;
 }
 
 .modal__close:hover {
@@ -18,7 +20,9 @@
 
 @media screen and (max-width: 767px) {
     .modal__close {
-        top: -50px;
+        width: 20px;
+        height: 20px;
+        top: -40px;
         right: 5px;
     }
     

@@ -7,11 +7,12 @@
     gap: 17px;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 1279px) {
     .photo__table {
-        grid-template-columns: repeat(3, 263px);
+        grid-template-columns: repeat(3, 255px);
         margin-left: auto;
         margin-right: auto;
         justify-content: center;

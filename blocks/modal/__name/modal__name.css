@@ -1,6 +1,6 @@
 .modal__name {
     width: 350px;
-    margin: 0 0 30px;
+    margin: 0 0 34px;
     padding: 5px 4px 14px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
@@ -15,8 +15,8 @@
 
 @media screen and (max-width: 767px) {
     .modal__name {
+        margin-bottom: 30px;
         width: 238px;
-
     }
     
 }

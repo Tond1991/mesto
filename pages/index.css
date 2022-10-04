@@ -31,7 +31,8 @@
 @import url(../blocks/photo/__table/photo__table.css);
 @import url(../blocks/photo/__title/photo__title.css);
 @import url(../blocks/photo/__content/photo__content.css);
-@import url(../blocks/photo/__icon/_red/photo__icon_red.css);
+@import url(../blocks/photo/__icon/_black/photo__icon_black.css);
+
 
 /* footer */
 @import url(../blocks/footer/footer.css);
@@ -42,7 +43,7 @@
 @import url(../blocks/modal/_active/modal_active.css);
 @import url(../blocks/modal/__close/modal__close.css);
 @import url(../blocks/modal/__content/modal__content.css);
-@import url(../blocks/modal/__name/modal__name.css);
-@import url(../blocks/modal/__profession/modal__profession.css);
+@import url(../blocks/modal/__input/modal__input.css);
 @import url(../blocks/modal/__save/modal__save.css);
 @import url(../blocks/modal/__title//modal__title.css);
+@import url(../blocks/modal/__form/modal__form.css);

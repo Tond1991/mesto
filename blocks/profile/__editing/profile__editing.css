@@ -4,7 +4,7 @@
     height: 29px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #000;
+    background-color: transparent;
     color: #fff;
     margin: 0 0 0 18px;
     padding: 0;
@@ -12,6 +12,7 @@
     cursor: pointer;
     grid-area: editing;
     align-self: center;
+    border: none;
 
 }
 
