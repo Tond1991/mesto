@@ -25,11 +25,12 @@
 
 /* photo */
 @import url(../blocks/photo/photo.css);
+@import url(../blocks/photo-cards/photo-cards.css);
 @import url(../blocks/photo/__cell/photo__cell.css);
 @import url(../blocks/photo/__icon/photo__icon.css);
 @import url(../blocks/photo/__image/photo__image.css);
-@import url(../blocks/photo/__table/photo__table.css);
 @import url(../blocks/photo/__title/photo__title.css);
+@import url(../blocks/photo/__delete/photo__delete.css);
 @import url(../blocks/photo/__content/photo__content.css);
 @import url(../blocks/photo/__icon/_black/photo__icon_black.css);
 
@@ -40,10 +41,17 @@
 
 /* modal */
 @import url(../blocks/modal/modal.css);
+@import url(../blocks/modal/_type/modal_type_photo.css);
 @import url(../blocks/modal/_active/modal_active.css);
 @import url(../blocks/modal/__close/modal__close.css);
 @import url(../blocks/modal/__content/modal__content.css);
+@import url(../blocks/modal/__content/_type/modal__content_type_photo.css);
 @import url(../blocks/modal/__input/modal__input.css);
 @import url(../blocks/modal/__save/modal__save.css);
 @import url(../blocks/modal/__title//modal__title.css);
 @import url(../blocks/modal/__form/modal__form.css);
+@import url(../blocks/modal/__caption/modal__caption.css);
+@import url(../blocks/modal/__photo/modal__photo.css);
+@import url(../blocks/modal/__container/modal__container.css);
+
+

@@ -26,75 +26,63 @@
                 </div>
                 <button class="profile__button" type="button">+</button>
             </section>
+            <ul class="photo-cards">
 
-            <section class="photo">
-                <ul class="photo__table">
+            </ul>
+            <template id="photo-item-template">
+                <ul class="photo">
                     <li class="photo__cell">
-                        <img src="./images/photo__karachaevsk.jpg" class="photo__image" alt="Карачаевск">
+                        <button type="button" class="photo__delete"></button>
+                        <img class="photo__image">
                         <div class="photo__content">
-                            <h2 class="photo__title">Карачаевск</h2>
-                            <button class="photo__icon" type="button" aria-label="Кнопка лайка" ></button>
-                        </div>
-                    </li>
-
-                    <li class="photo__cell">
-                        <img src="./images/photo__elbrus.jpg" class="photo__image" alt="Эльбрус">
-                        <div class="photo__content">
-                            <h2 class="photo__title">Гора Эльбрус</h2>
-                            <button class="photo__icon" type="button" aria-label="Кнопка лайка"></button>
-                        </div>
-                    </li>
-
-                    <li class="photo__cell">
-                        <img src="./images/photo__dombai.jpg" class="photo__image" alt="Домбай">
-                        <div class="photo__content">
-                            <h2 class="photo__title">Домбай</h2>
-                            <button class="photo__icon" type="button" aria-label="Кнопка лайка"></button>
-                        </div>
-                    </li>
-
-                    <li class="photo__cell">
-                        <img src="./images/photo__baikal.jpg" class="photo__image" alt="Байкал">
-                        <div class="photo__content">
-                            <h2 class="photo__title">Байкал</h2>
-                            <button class="photo__icon" type="button" aria-label="Кнопка лайка"></button>
-                        </div>
-                    </li>
-
-                    <li class="photo__cell">
-                        <img src="./images/photo__polyna.jpg" class="photo__image" alt="Красная поляна">
-                        <div class="photo__content">
-                            <h2 class="photo__title">Красная Поляна</h2>
-                            <button class="photo__icon" type="button" aria-label="Кнопка лайка"></button>
-                        </div>
-                    </li>
-
-                    <li class="photo__cell">
-                        <img src="./images/photo__karachaevo-cherkesk.jpg" class="photo__image" alt="Карачаево-Черкеск">
-                        <div class="photo__content">
-                            <h2 class="photo__title">Карачаево-Черкеск</h2>
-                            <button class="photo__icon" type="button" aria-label="Кнопка лайка"></button>
+                            <h2 class="photo__title"></h2>
+                            <button type="button" class="photo__icon"></button>
                         </div>
                     </li>
                 </ul>
-            </section>
+            </template>
+
         </main>
 
         <footer class="footer">
             <p class="footer__title">© 2020 Mesto Russia</p>
         </footer>
 
-        <section class="modal">
+        <section class="modal modal_type_profile">
             <div class="modal__content">
-                <button class="modal__close" type="button" aria-label="Кнопка лайка"></button>
+                <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
                 <h2 class="modal__title">Редактировать профиль</h2>
                 <form class="modal__form" name="form">
-                    <input type="text" name="name" placeholder="Введите ваше Имя" class="modal__input modal__input_form_name">
-                    <input type="text" name="profession" placeholder="Введите вашу профессию" class="modal__input modal__input_form_profession">
+                    <input type="text" name="name" placeholder="Введите ваше Имя"
+                        class="modal__input modal__input_form_name">
+                    <input type="text" name="profession" placeholder="Введите вашу профессию"
+                        class="modal__input modal__input_form_profession">
                     <button type="submit" class="modal__save">Сохранить</button>
                 </form>
             </div>
         </section>
+
+        <section class="modal modal_type_add-new-card">
+            <div class="modal__content">
+                <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
+                <h2 class="modal__title">Новое место</h2>
+                <form class="modal__form" name="form">
+                    <input type="text" name="name" placeholder="Название" class="modal__input modal__input_form_mesto">
+                    <input type="text" name="profession" placeholder="Ссылка на картинку"
+                        class="modal__input modal__input_form_url">
+                    <button type="submit" class="modal__save">Создать</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="modal modal_type_photo" aria-label="Фото">
+            <figure class="modal__content modal__content_type_photo">
+                <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
+                <img src="images/photo__baikal.jpg" class="modal__photo" alt="Байкал">
+                <figcaption class="modal__caption"></figcaption>
+            </figure>
+        </section>
+
     </div>
 
 </body>

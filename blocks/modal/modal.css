@@ -1,22 +1,14 @@
-@keyframes opacity {
-    0% {
-         opacity: 0;
-    }
-
-    100% {
-        opacity: 100%;
-    }
-  }
-
 .modal {
-    font-family: 'Inter', 'Arial', sans-serif;
     position: fixed;
     left: 0;
     top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, .5);
-    display: none;
-    animation: opacity .5s forwards;
+	transition: visibility 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
+	visibility: hidden;
 }
-
