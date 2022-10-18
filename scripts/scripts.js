@@ -12,60 +12,65 @@ const editProfileForm = editProfileModal.querySelector(".modal__form");
 const addNewCardForm = addNewCardModal.querySelector(".modal__form");
 const mestoInpt = addNewCardModal.querySelector(".modal__input_form_mesto");
 const urlInpt = addNewCardModal.querySelector(".modal__input_form_url");
-const photoCardsTemplate = document.querySelector(".photo-cards");
+const photoCardsList = document.querySelector(".photo-cards");
 const photoTemplate = document.querySelector("#photo-item-template").content.querySelector(".photo__cell");
 const photoModal = document.querySelector(".modal_type_photo");
+const photoElementModal = document.querySelector(".modal__photo");
+const captionElementModal = document.querySelector(".modal__caption");
 
-
-function openModal (modal, event) {
-        modal.classList.add("modal_active");
+function openModal(modal, event) {
+    modal.classList.add("modal_active");
 };
 
-function openProfileModal (event) {
-    nameInpt.value = "Жак-Ив Кусто";
-    professionInpt.value = "Исследователь океана";
+function openProfileModal(event) {
+    nameInpt.value = nameText.textContent;
+    professionInpt.value = professionText.textContent;
     openModal(editProfileModal, event)
- };
- 
- function openAddNewCard(event) {
-   openModal(addNewCardModal, event)
- };
+};
+
+function openAddNewCard(event) {
+    openModal(addNewCardModal, event)
+};
 
 
- function openPhotoModal (photoData, event) {
-    document.querySelector(".modal__photo").src = photoData.link;
-    document.querySelector(".modal__photo").alt = photoData.name;
-    document.querySelector(".modal__caption").textContent = photoData.name;
+function openPhotoModal(photoData, event) {
+    photoElementModal.src = photoData.link;
+    photoElementModal.alt = photoData.name;
+    captionElementModal.textContent = photoData.name;
     openModal(photoModal, event);
- };
+};
 
 function saveSubmitPop(event) {
     nameText.textContent = nameInpt.value;
     professionText.textContent = professionInpt.value;
     event.preventDefault();
-    editProfileModal.classList.remove("modal_active");
+    closeModalSubmit(editProfileModal, event);
 };
 
-function closeModal (modal, event) {
-        
-       if (!modal.querySelector(".modal__content").contains(event.target) || event.target === modal.querySelector(".modal__close")) {
+function closeModalSubmit(modal) {
+    modal.classList.remove("modal_active");
+};
+
+function closeModal(modal, event) {
+
+    if (!modal.querySelector(".modal__content").contains(event.target) || event.target === modal.querySelector(".modal__close")) {
         modal.classList.remove("modal_active");
     }
 };
 
-function closeProfileModal (event) {
+function closeProfileModal(event) {
     closeModal(editProfileModal, event)
- };
+};
 
- function closeNewCardModal  (event) {
+function closeNewCardModal(event) {
     closeModal(addNewCardModal, event)
- };
+};
 
- function closePhotoModal (event) {
+function closePhotoModal(event) {
     closeModal(photoModal, event)
- };
+};
 
- const initialCards = [
+const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -93,46 +98,40 @@ function closeProfileModal (event) {
 ];
 
 
-const photoCards = (element) => {
+const createCard = (element) => {
     const elementPhotoTemplate = photoTemplate.cloneNode(true);
     const removePhotoCardBtn = elementPhotoTemplate.querySelector(".photo__delete");
-    
+
     elementPhotoTemplate.querySelector(".photo__image").src = element.link;
-   elementPhotoTemplate.querySelector(".photo__image").alt = element.name;
-   elementPhotoTemplate.querySelector(".photo__title").textContent = element.name;
-   elementPhotoTemplate.querySelector(".photo__icon").addEventListener("click", function (event) {
+    elementPhotoTemplate.querySelector(".photo__image").alt = element.name;
+    elementPhotoTemplate.querySelector(".photo__title").textContent = element.name;
+    elementPhotoTemplate.querySelector(".photo__icon").addEventListener("click", function (event) {
         event.target.classList.toggle("photo__icon_black");
     })
- 
+
     elementPhotoTemplate.querySelector(".photo__image").addEventListener("click", (event) => openPhotoModal(element, event));
     removePhotoCardBtn.addEventListener("click", () => removePhotoCard(elementPhotoTemplate));
-    photoCardsTemplate.prepend(elementPhotoTemplate);
-}
+    return elementPhotoTemplate;
+};
 
-initialCards.forEach(photoCards); 
+initialCards.forEach((element) => {
+    photoCardsList.prepend(createCard(element));
+});
 
 const saveCardSubmit = (event) => {
     event.preventDefault();
-    
-    photoCards({
+
+    photoCardsList.prepend(createCard({
         link: urlInpt.value,
         name: mestoInpt.value
-    },);
-
-    addNewCardModal.classList.remove("modal_active");
-    clearInput();
+    }));
+    closeModalSubmit(addNewCardModal, event);
+    event.target.reset();
 };
 
 const removePhotoCard = (element) => {
     element.remove();
 }
-
-const clearInput = () => {
-    urlInpt.value = '',
-    mestoInpt.value = '';
-}
-
-
 
 editProfileBtn.addEventListener("click", openProfileModal);
 editProfileModal.addEventListener("click", closeProfileModal);
