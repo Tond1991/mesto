@@ -17,6 +17,7 @@ const photoTemplate = document.querySelector("#photo-item-template").content.que
 const photoModal = document.querySelector(".modal_type_photo");
 const photoElementModal = document.querySelector(".modal__photo");
 const captionElementModal = document.querySelector(".modal__caption");
+const createCardButton = addNewCardModal.querySelector(validationConfig.submitButtonSelector);
 
 function openModal(modal, event) {
     modal.classList.add("modal_active");
@@ -30,6 +31,7 @@ function openProfileModal(event) {
 
 function openAddNewCard(event) {
     openModal(addNewCardModal, event)
+    dissableBtn(createCardButton, validationConfig.inactiveButtonClass);
 };
 
 
@@ -43,7 +45,6 @@ function openPhotoModal(photoData, event) {
 function saveSubmitPop(event) {
     nameText.textContent = nameInpt.value;
     professionText.textContent = professionInpt.value;
-    event.preventDefault();
     closeModalSubmit(editProfileModal, event);
 };
 
@@ -57,6 +58,14 @@ function closeModal(modal, event) {
         modal.classList.remove("modal_active");
     }
 };
+
+function keyClose (evt) {
+    if (evt.key === "Escape") {
+        editProfileModal.classList.remove("modal_active");
+        addNewCardModal.classList.remove("modal_active");
+        photoModal.classList.remove("modal_active");
+    }
+}
 
 function closeProfileModal(event) {
     closeModal(editProfileModal, event)
@@ -119,8 +128,6 @@ initialCards.forEach((element) => {
 });
 
 const saveCardSubmit = (event) => {
-    event.preventDefault();
-
     photoCardsList.prepend(createCard({
         link: urlInpt.value,
         name: mestoInpt.value
@@ -133,6 +140,7 @@ const removePhotoCard = (element) => {
     element.remove();
 }
 
+document.addEventListener("keydown", keyClose);
 editProfileBtn.addEventListener("click", openProfileModal);
 editProfileModal.addEventListener("click", closeProfileModal);
 addNewCardBtn.addEventListener("click", openAddNewCard);
@@ -140,12 +148,5 @@ addNewCardModal.addEventListener("click", closeNewCardModal);
 photoModal.addEventListener("click", closePhotoModal);
 editProfileForm.addEventListener("submit", saveSubmitPop);
 addNewCardForm.addEventListener("submit", saveCardSubmit);
-
-
-
-
-
-
-
 
 
