@@ -21,6 +21,7 @@ const createCardButton = addNewCardModal.querySelector(validationConfig.submitBu
 
 function openModal(modal, event) {
     modal.classList.add("modal_active");
+    document.addEventListener("keydown", keyClose)
 };
 
 function openProfileModal(event) {
@@ -31,7 +32,7 @@ function openProfileModal(event) {
 
 function openAddNewCard(event) {
     openModal(addNewCardModal, event)
-    dissableBtn(createCardButton, validationConfig.inactiveButtonClass);
+   dissableBtn(createCardButton, validationConfig.inactiveButtonClass);
 };
 
 
@@ -56,16 +57,17 @@ function closeModal(modal, event) {
 
     if (!modal.querySelector(".modal__content").contains(event.target) || event.target === modal.querySelector(".modal__close")) {
         modal.classList.remove("modal_active");
-    }
+        document.removeEventListener("keydown", keyClose);
+   }
 };
 
-function keyClose (evt) {
-    if (evt.key === "Escape") {
-        editProfileModal.classList.remove("modal_active");
-        addNewCardModal.classList.remove("modal_active");
-        photoModal.classList.remove("modal_active");
+function keyClose (event) {
+    if (event.key === "Escape") {
+        const modalActive = document.querySelector(".modal_active");
+        modalActive.classList.remove("modal_active");
     }
 }
+
 
 function closeProfileModal(event) {
     closeModal(editProfileModal, event)
@@ -140,7 +142,6 @@ const removePhotoCard = (element) => {
     element.remove();
 }
 
-document.addEventListener("keydown", keyClose);
 editProfileBtn.addEventListener("click", openProfileModal);
 editProfileModal.addEventListener("click", closeProfileModal);
 addNewCardBtn.addEventListener("click", openAddNewCard);

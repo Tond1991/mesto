@@ -28,6 +28,8 @@ const toggleButtonState = (buttonElement, buttonElementDisabled, buttonState) =>
   }
 }
 
+
+
 const checkInputValidity = (inputElement, errorElement, inputErrorClass) => {
   if (inputElement.validity.valid) {
     hideInputError(inputElement, errorElement, inputErrorClass);
@@ -40,7 +42,7 @@ const hasInvalidInput = (inputs) =>  inputs.some((input) => !input.validity.vali
 
 const handleFormInput = (evt, form, inputErrorClass, submitButton, disabledSubmitButtonClass, inputs) => {
   const inputElement = evt.target;
-  const errorElement = form.querySelector(`.modal__input_error-${inputElement.name}`);
+  const errorElement = form.querySelector(`.modal__error-${inputElement.name}`);
   checkInputValidity(inputElement, errorElement, inputErrorClass);
   const buttonState = hasInvalidInput(inputs);
 
@@ -59,6 +61,14 @@ const setEventListeners = (form, config) => {
     inputs.forEach((inputElement) => {
       inputElement.addEventListener("input", (evt) => handleFormInput(evt, form, config.inputErrorClass, submitButtonElement,  config.inactiveButtonClass, inputs))
     })
+
+   /* toggleButtonState(submitButtonElement, config.inactiveButtonClass, true);
+
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+         toggleButtonState(submitButtonElement, config.inactiveButtonClass, true);
+      }, 0); 
+    });*/
 }
 
 const enableValidation = (config) => {
@@ -66,4 +76,4 @@ const enableValidation = (config) => {
   forms.forEach((form) => setEventListeners(form, config))
 }
 
-enableValidation(validationConfig); 
+enableValidation(validationConfig);

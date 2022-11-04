@@ -54,13 +54,13 @@
             <div class="modal__content">
                 <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
                 <h2 class="modal__title">Редактировать профиль</h2>
-                <form class="modal__form" name="form" novalidate>
+                <form class="modal__form" name="profile-form" novalidate>
                     <input type="text" minlength="2" maxlength="40" name="name" placeholder="Введите ваше Имя"
                         class="modal__input modal__input_form_name" required>
-                    <span class="modal__input modal__input_error-name modal__input_error"></span>
+                    <span class="modal__error modal__error-name"></span>
                     <input type="text" minlength="2" maxlength="200" name="profession"
                         placeholder="Введите вашу профессию" class="modal__input modal__input_form_profession" required>
-                    <span class="modal__input modal__input_error-profession modal__input_error"></span>
+                    <span class="modal__error modal__error-profession"></span>
                     <button type="submit" class="modal__save">Сохранить</button>
                 </form>
             </div>
@@ -70,14 +70,14 @@
             <div class="modal__content">
                 <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
                 <h2 class="modal__title">Новое место</h2>
-                <form class="modal__form" name="form" novalidate>
+                <form class="modal__form" name="add-new-card-form" novalidate>
                     <input type="text" minlength="2" maxlength="200" name="name-mesto" placeholder="Название"
                         class="modal__input modal__input_form_mesto" required>
-                    <span class="modal__input modal__input_error-name-mesto modal__input_error"></span>
+                    <span class="modal__error modal__error-name-mesto"></span>
 
                     <input type="url" name="url" placeholder="Ссылка на картинку"
                         class="modal__input modal__input_form_url" required>
-                    <span class="modal__input modal__input_error-url modal__input_error"></span>
+                    <span class="modal__error modal__error-url"></span>
                     <button type="submit" class="modal__save">Создать</button>
                 </form>
             </div>
