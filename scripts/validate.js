@@ -62,13 +62,13 @@ const setEventListeners = (form, config) => {
       inputElement.addEventListener("input", (evt) => handleFormInput(evt, form, config.inputErrorClass, submitButtonElement,  config.inactiveButtonClass, inputs))
     })
 
-   /* toggleButtonState(submitButtonElement, config.inactiveButtonClass, true);
+   /toggleButtonState(submitButtonElement, config.inactiveButtonClass, true);
 
     form.addEventListener('reset', () => {
       setTimeout(() => {
          toggleButtonState(submitButtonElement, config.inactiveButtonClass, true);
       }, 0); 
-    });*/
+    });
 }
 
 const enableValidation = (config) => {
