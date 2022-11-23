@@ -16,11 +16,11 @@ export class Card {
         return photoTemplate;
     }
 
-    deleteCard() {
+    _deleteCard() {
         this._element.remove();
     };
 
-    likeToggle() {
+    _likeToggle() {
         this._likeBtn.classList
         .toggle("photo__icon_black");
     }
@@ -46,15 +46,16 @@ export class Card {
 
     _setListeners() {
         this._removeBtn.addEventListener("click", () => {
-            this.deleteCard();
+            this._deleteCard();
         });
 
         this._likeBtn.addEventListener("click", () => {
-            this.likeToggle();
+            this._likeToggle();
         });
 
         this._elementImg.addEventListener("click", this._handlePhotoClick);
 
     };
 }
+
 

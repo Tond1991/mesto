@@ -1,5 +1,6 @@
 import { Card } from "./Card.js"
-import { FormValidation } from "./FormValidation.js";
+import { Validation } from "./Validation.js";
+import { validationConfig, initialCards } from "./constants.js";
 
 
 const editProfileBtn = document.querySelector(".profile__editing");
@@ -16,7 +17,6 @@ const addNewCardForm = addNewCardModal.querySelector(".modal__form");
 const mestoInpt = addNewCardModal.querySelector(".modal__input_form_mesto");
 const urlInpt = addNewCardModal.querySelector(".modal__input_form_url");
 const photoCardsList = document.querySelector(".photo-cards");
-//const createCardButton = addNewCardModal.querySelector(validationConfig.submitButtonSelector);
 const modals = document.querySelectorAll('.modal')
 const photoModal = document.querySelector(".modal_type_photo");
 const photoElementModal = document.querySelector(".modal__photo");
@@ -31,14 +31,15 @@ function openModal(modal) {
 function openProfileModal() {
     nameInpt.value = nameText.textContent;
     professionInpt.value = professionText.textContent;
+    profileFormValidation.dissableBtn();
     openModal(editProfileModal)
 };
 
 function openAddNewCard() {
     openModal(addNewCardModal)
-    //dissableBtn(createCardButton, validationConfig.inactiveButtonClass);
-};
+        cardFormValidation.dissableBtn();
 
+};
 
 function openPhotoModal(photoLink, photoName) {
     photoElementModal.src = photoLink;
@@ -99,6 +100,7 @@ const saveCardSubmit = (event) => {
     }));
     closeModal(addNewCardModal, event);
     event.target.reset();
+    cardFormValidation.dissableBtn();
 };
 
 
@@ -108,8 +110,8 @@ editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 addNewCardForm.addEventListener("submit", saveCardSubmit);
 
 
-const profileFormValidation = new FormValidation(validationConfig, editProfileForm);
-const cardFormValidation = new FormValidation(validationConfig, addNewCardForm);
+const profileFormValidation = new Validation(validationConfig, editProfileForm);
+const cardFormValidation = new Validation(validationConfig, addNewCardForm);
 
 profileFormValidation.enableValidation();
 cardFormValidation.enableValidation();

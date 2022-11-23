@@ -1,5 +1,5 @@
 .modal__save {
-    margin: 48px 0 37px;
+    margin: 13px 0 25px;
     padding: 0;
     width: 358px;
     height: 50px;
@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 767px) {
     .modal__save {
-        margin-top: 45px;
+        margin-top: 10px;
         width: 238px;
         height: 46px;
     }
