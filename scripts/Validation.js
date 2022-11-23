@@ -48,7 +48,7 @@ export class Validation {
         const inputElement = evt.target;
         const errorElement = this._formElement.querySelector(`.modal__error-${inputElement.name}`);
         this._checkInputValidity(inputElement, errorElement, this._inputErrorClass);
-        this.toggleButtonState();
+        this._toggleButtonState();
     }
 
     _handleFormSubmit = (evt) => {
@@ -62,7 +62,7 @@ export class Validation {
         })
     }
 
-    toggleButtonState = () => {
+    _toggleButtonState = () => {
         if (this._hasInvalidInput()) {
             this.dissableBtn();
         } else {
