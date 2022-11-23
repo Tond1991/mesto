@@ -1,3 +1,7 @@
+import { Card } from "./Card.js"
+import { FormValidation } from "./FormValidation.js";
+
+
 const editProfileBtn = document.querySelector(".profile__editing");
 const addNewCardBtn = document.querySelector(".profile__button");
 const editProfileModal = document.querySelector(".modal_type_profile");
@@ -12,12 +16,12 @@ const addNewCardForm = addNewCardModal.querySelector(".modal__form");
 const mestoInpt = addNewCardModal.querySelector(".modal__input_form_mesto");
 const urlInpt = addNewCardModal.querySelector(".modal__input_form_url");
 const photoCardsList = document.querySelector(".photo-cards");
-const photoTemplate = document.querySelector("#photo-item-template").content.querySelector(".photo__cell");
+//const createCardButton = addNewCardModal.querySelector(validationConfig.submitButtonSelector);
+const modals = document.querySelectorAll('.modal')
 const photoModal = document.querySelector(".modal_type_photo");
 const photoElementModal = document.querySelector(".modal__photo");
 const captionElementModal = document.querySelector(".modal__caption");
-const createCardButton = addNewCardModal.querySelector(validationConfig.submitButtonSelector);
-const modals = document.querySelectorAll('.modal')
+
 
 function openModal(modal) {
     modal.classList.add("modal_active");
@@ -32,14 +36,14 @@ function openProfileModal() {
 
 function openAddNewCard() {
     openModal(addNewCardModal)
-   dissableBtn(createCardButton, validationConfig.inactiveButtonClass);
+    //dissableBtn(createCardButton, validationConfig.inactiveButtonClass);
 };
 
 
-function openPhotoModal(photoData) {
-    photoElementModal.src = photoData.link;
-    photoElementModal.alt = photoData.name;
-    captionElementModal.textContent = photoData.name;
+function openPhotoModal(photoLink, photoName) {
+    photoElementModal.src = photoLink;
+    photoElementModal.alt = photoName;
+    captionElementModal.textContent = photoName;
     openModal(photoModal);
 };
 
@@ -60,9 +64,11 @@ modals.forEach((modal) => {
         if (evt.target.classList.contains('modal') || evt.target.classList.contains('modal__close')) {
             closeModal(modal)
         }
-          })})
+    })
+})
 
-function handleEscape (event) {
+
+function handleEscape(event) {
     if (event.key === "Escape") {
         const modalActive = document.querySelector(".modal_active");
         closeModal(modalActive);
@@ -70,55 +76,23 @@ function handleEscape (event) {
 }
 
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
-];
 
 
-const createCard = (element) => {
-    const elementPhotoTemplate = photoTemplate.cloneNode(true);
-    const removePhotoCardBtn = elementPhotoTemplate.querySelector(".photo__delete");
-    const photoCards = elementPhotoTemplate.querySelector(".photo__image");
-    photoCards.src = element.link;
-    photoCards.alt = element.name;
-    elementPhotoTemplate.querySelector(".photo__title").textContent = element.name;
-    elementPhotoTemplate.querySelector(".photo__icon").addEventListener("click", function (event) {
-        event.target.classList.toggle("photo__icon_black");
-    })
+const createCard = (data) => {
+    const card = new Card(data, ".photo-item-template", openPhotoModal);
+    const cardElement = card.generateCard();
 
-    photoCards.addEventListener("click", (event) => openPhotoModal(element, event));
-    removePhotoCardBtn.addEventListener("click", () => removePhotoCard(elementPhotoTemplate));
-    return elementPhotoTemplate;
+    return cardElement;
 };
 
-initialCards.forEach((element) => {
-    photoCardsList.prepend(createCard(element));
+initialCards.forEach((data) => {
+    photoCardsList.prepend(createCard(data));
 });
 
+
+
 const saveCardSubmit = (event) => {
+
     photoCardsList.prepend(createCard({
         link: urlInpt.value,
         name: mestoInpt.value
@@ -127,9 +101,6 @@ const saveCardSubmit = (event) => {
     event.target.reset();
 };
 
-const removePhotoCard = (element) => {
-    element.remove();
-}
 
 editProfileBtn.addEventListener("click", openProfileModal);
 addNewCardBtn.addEventListener("click", openAddNewCard);
@@ -137,3 +108,8 @@ editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 addNewCardForm.addEventListener("submit", saveCardSubmit);
 
 
+const profileFormValidation = new FormValidation(validationConfig, editProfileForm);
+const cardFormValidation = new FormValidation(validationConfig, addNewCardForm);
+
+profileFormValidation.enableValidation();
+cardFormValidation.enableValidation();
