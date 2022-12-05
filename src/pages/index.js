@@ -1,28 +1,32 @@
-import { Card } from "./Card.js"
-import { Validation } from "./Validation.js";
-import { validationConfig, initialCards } from "./constants.js";
+import Card from "../components/Card.js"
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import ModalWithImage from "../components/ModalWithImage.js";
+import ModalWithForm from "../components/ModalWithForm.js";
+import { validationConfig, 
+    initialCards, 
+    photoModal, 
+    editProfileBtn, 
+    addNewCardBtn, 
+    editProfileModal, 
+    addNewCardModal } from "../utils/constants.js";
+import './index.css';
 
 
-const editProfileBtn = document.querySelector(".profile__editing");
-const addNewCardBtn = document.querySelector(".profile__button");
-const editProfileModal = document.querySelector(".modal_type_profile");
-const addNewCardModal = document.querySelector(".modal_type_add-new-card");
+
 const profileContent = document.querySelector(".profile__content");
 const nameText = profileContent.querySelector(".profile__name");
 const professionText = profileContent.querySelector(".profile__profession");
-const nameInpt = editProfileModal.querySelector(".modal__input_form_name");
-const professionInpt = editProfileModal.querySelector(".modal__input_form_profession");
+
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const addNewCardForm = addNewCardModal.querySelector(".modal__form");
 const mestoInpt = addNewCardModal.querySelector(".modal__input_form_mesto");
 const urlInpt = addNewCardModal.querySelector(".modal__input_form_url");
 const photoCardsList = document.querySelector(".photo-cards");
 const modals = document.querySelectorAll('.modal')
-const photoModal = document.querySelector(".modal_type_photo");
-const photoElementModal = document.querySelector(".modal__photo");
-const captionElementModal = document.querySelector(".modal__caption");
 
 
+/*
 function openModal(modal) {
     modal.classList.add("modal_active");
     document.addEventListener("keydown", handleEscape)
@@ -46,9 +50,17 @@ function openPhotoModal(photoLink, photoName) {
     photoElementModal.alt = photoName;
     captionElementModal.textContent = photoName;
     openModal(photoModal);
-};
+};*/
 
+const openPhotoModal = new ModalWithImage(photoModal);
+openPhotoModal.setEventListeners();
+
+const onPhotoClick = (caption, image) => {
+    openPhotoModal.openModal(caption, image)
+}
+/*
 function handleProfileFormSubmit(event) {
+    event.preventDefault();
     nameText.textContent = nameInpt.value;
     professionText.textContent = professionInpt.value;
     closeModal(editProfileModal, event);
@@ -58,9 +70,9 @@ function closeModal(modal) {
     modal.classList.remove("modal_active");
     document.removeEventListener("keydown", handleEscape);
 
-};
+};*/
 
-modals.forEach((modal) => {
+/*modals.forEach((modal) => {
     modal.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('modal') || evt.target.classList.contains('modal__close')) {
             closeModal(modal)
@@ -74,9 +86,26 @@ function handleEscape(event) {
         const modalActive = document.querySelector(".modal_active");
         closeModal(modalActive);
     }
-}
+}*/
 
+const createItem = new Section({
+    items: initialCards,
+    renderer: (item) => {
 
+        const card = new Card(item, ".photo-item-template", onPhotoClick);
+        const cardElement = card.generateCard();
+        createItem.addItem(cardElement);
+    }
+}, photoCardsList);
+
+createItem.renderItems();
+
+/*const createCard = (data) => {
+    const card = new Card(data, ".photo-item-template", onPhotoClick);
+    const cardElement = card.generateCard();
+
+    return cardElement;
+};*/
 
 
 const createCard = (data) => {
@@ -85,15 +114,15 @@ const createCard = (data) => {
 
     return cardElement;
 };
-
+/*
 initialCards.forEach((data) => {
     photoCardsList.prepend(createCard(data));
-});
+});*/
 
 
 
-const saveCardSubmit = (event) => {
-
+/*const saveCardSubmit = (event) => {
+    event.preventDefault();
     photoCardsList.prepend(createCard({
         link: urlInpt.value,
         name: mestoInpt.value
@@ -101,17 +130,33 @@ const saveCardSubmit = (event) => {
     closeModal(addNewCardModal, event);
     event.target.reset();
     cardFormValidation.dissableBtn();
-};
+};*/
+
+const saveCardSubmit = new ModalWithForm(addNewCardModal, {handleSubmitForm: (formValues) => {
+    createItem.addItem(createCard({
+        link: formValues.url,
+        name: formValues.mesto
+
+    }));
+    saveCardSubmit.closeModal();
+}});
+saveCardSubmit.setEventListeners();
 
 
-editProfileBtn.addEventListener("click", openProfileModal);
-addNewCardBtn.addEventListener("click", openAddNewCard);
-editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-addNewCardForm.addEventListener("submit", saveCardSubmit);
+
+//editProfileBtn.addEventListener("click", openProfileModal);
+addNewCardBtn.addEventListener("click", () => {
+    saveCardSubmit.openModal();
+    cardFormValidation.dissableBtn();
+
+});
+//editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+//addNewCardForm.addEventListener("submit", saveCardSubmit);
 
 
-const profileFormValidation = new Validation(validationConfig, editProfileForm);
-const cardFormValidation = new Validation(validationConfig, addNewCardForm);
+const profileFormValidation = new FormValidator(validationConfig, editProfileForm);
+const cardFormValidation = new FormValidator(validationConfig, addNewCardForm);
 
 profileFormValidation.enableValidation();
 cardFormValidation.enableValidation();
+

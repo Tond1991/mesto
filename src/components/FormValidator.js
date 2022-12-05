@@ -1,4 +1,4 @@
-export class Validation {
+export default class FormValidator {
     constructor(config, formElement) {
         this._formElement = formElement;
         this._config = config;
@@ -51,12 +51,8 @@ export class Validation {
         this._toggleButtonState();
     }
 
-    _handleFormSubmit = (evt) => {
-        evt.preventDefault();
-    }
 
     _setEventListeners = () => {
-        this._formElement.addEventListener("submit", this._handleFormSubmit);
         this._inputs.forEach((inputElement) => {
             inputElement.addEventListener("input", (evt) => this._handleFormInput(evt))
         })

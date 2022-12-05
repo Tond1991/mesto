@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
-    <script type="module" src="./src/index.js"></script>
+    <script type="module" src="./index.js"></script>
 </head>
 
 <body class="body">
@@ -18,7 +17,7 @@
 
         <main class="content">
             <section class="profile">
-                <img src="./images/profile__img.jpg" class="profile__image" alt="Ваше фото">
+                <img src="<%=require("../src/images/profile__img.jpg")%>" class="profile__image" alt="Ваше фото">
                 <div class="profile__content">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <button class="profile__editing" type="button" aria-label="Кнопка редактирования"></button>
@@ -71,7 +70,7 @@
                 <form class="modal__form" name="add-new-card-form" novalidate>
                     <input type="text" minlength="2" maxlength="200" name="mesto" placeholder="Название"
                         class="modal__input modal__input_form_mesto" required>
-                    <span class="modal__error modal__error-name-mesto"></span>
+                    <span class="modal__error modal__error-mesto"></span>
 
                     <input type="url" name="url" placeholder="Ссылка на картинку"
                         class="modal__input modal__input_form_url" required>

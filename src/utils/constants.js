@@ -5,9 +5,9 @@ const validationConfig = {
     inactiveButtonClass: 'modal__save_disabled',
     inputErrorClass: 'modal__input_type_error',
     errorClass: 'modal__error_visible'
-  };
+};
 
-  const initialCards = [
+const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -33,5 +33,28 @@ const validationConfig = {
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     },
 ];
+const editProfileBtn = document.querySelector(".profile__editing");
+const addNewCardBtn = document.querySelector(".profile__button");
+const photoElementModal = document.querySelector(".modal__photo");
+const captionElementModal = document.querySelector(".modal__caption");
+const photoModal = document.querySelector(".modal_type_photo");
+const editProfileModal = document.querySelector(".modal_type_profile");
+const addNewCardModal = document.querySelector(".modal_type_add-new-card");
+const nameInpt = editProfileModal.querySelector(".modal__input_form_name");
+const professionInpt = editProfileModal.querySelector(".modal__input_form_profession");
 
-export { validationConfig, initialCards };
+
+
+
+export { validationConfig, 
+    initialCards, 
+    editProfileBtn, 
+    addNewCardBtn, 
+    editProfileModal, 
+    addNewCardModal, 
+    photoElementModal, 
+    captionElementModal, 
+    photoModal,
+    nameInpt,
+    professionInpt
+};
