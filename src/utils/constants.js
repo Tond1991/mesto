@@ -37,12 +37,15 @@ const editProfileBtn = document.querySelector(".profile__editing");
 const addNewCardBtn = document.querySelector(".profile__button");
 const photoElementModal = document.querySelector(".modal__photo");
 const captionElementModal = document.querySelector(".modal__caption");
+const profileContent = document.querySelector(".profile__content");
 const photoModal = document.querySelector(".modal_type_photo");
 const editProfileModal = document.querySelector(".modal_type_profile");
 const addNewCardModal = document.querySelector(".modal_type_add-new-card");
 const nameInpt = editProfileModal.querySelector(".modal__input_form_name");
 const professionInpt = editProfileModal.querySelector(".modal__input_form_profession");
-
+const editProfileForm = editProfileModal.querySelector(".modal__form");
+const addNewCardForm = addNewCardModal.querySelector(".modal__form");
+const photoCardsList = document.querySelector(".photo-cards");
 
 
 
@@ -56,5 +59,8 @@ export { validationConfig,
     captionElementModal, 
     photoModal,
     nameInpt,
-    professionInpt
+    professionInpt,
+      photoCardsList,
+    editProfileForm,
+    addNewCardForm
 };

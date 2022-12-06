@@ -1,23 +1,18 @@
-import {    nameInpt,
-          professionInpt
- } from "../utils/constants.js";
-
-
 export default class UserInfo {
-    constructor({name, profession}) {
-        this._name = name;
-        this._profession = profession;
+    constructor({nameSelector, professionSelector}) {
+        this._name = document.querySelector(nameSelector);
+        this._profession = document.querySelector(professionSelector);
     }
 
-   /* getUserInfo() {
+     getUserInfo() {
         return {
-            this._name,
-            this._profession,
+            username: this._name.textContent,
+            profession: this._profession.textContent
         }
-    }*/
+    }
 
-    setUserInfo() {
-        this._name.textContent = nameInpt.value;
-        this._profession.textContent = professionInpt.value;
+    setUserInfo({username, profession}) {
+        this._name.textContent = username;
+        this._profession.textContent = profession;
     }
 }

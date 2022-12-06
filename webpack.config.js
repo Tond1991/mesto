@@ -12,6 +12,7 @@ module.exports = {
     filename: 'main.js',
     publicPath: '',
   },
+  devtool: "eval-source-map",
   mode: 'development',
   devServer: {
     static: path.resolve(__dirname, './dist'),
@@ -42,6 +43,11 @@ module.exports = {
       },
     ]
   },
+  performance: {
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+},
+  
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
