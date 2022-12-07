@@ -1,95 +1,130 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
     <script type="module" src="./pages/index.js"></script>
-</head>
+  </head>
 
-<body class="body">
+  <body class="body">
     <div class="page">
-        <header class="header">
-            <a href="#" class="header__logo"></a>
-        </header>
+      <header class="header">
+        <a href="#" class="header__logo"></a>
+      </header>
 
-        <main class="content">
-            <section class="profile">
-                <img src="<%=require("../src/images/profile__img.jpg")%>" class="profile__image" alt="Ваше фото">
-                <div class="profile__content">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__editing" type="button" aria-label="Кнопка редактирования"></button>
-                    <p class="profile__profession">Исследователь океана</p>
-                </div>
-                <button class="profile__button" type="button">+</button>
-            </section>
-            <ul class="photo-cards">
-
-            </ul>
-            <template class="photo-item-template">
-                <ul class="photo">
-                    <li class="photo__cell">
-                        <button type="button" class="photo__delete"></button>
-                        <img class="photo__image">
-                        <div class="photo__content">
-                            <h2 class="photo__title"></h2>
-                            <button type="button" class="photo__icon "></button>
-                        </div>
-                    </li>
-                </ul>
-            </template>
-
-        </main>
-
-        <footer class="footer">
-            <p class="footer__title">© 2020 Mesto Russia</p>
-        </footer>
-
-        <section class="modal modal_type_profile">
-            <div class="modal__content">
-                <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
-                <h2 class="modal__title">Редактировать профиль</h2>
-                <form class="modal__form" name="profile-form" novalidate>
-                    <input type="text" minlength="2" maxlength="40" name="name" placeholder="Введите ваше Имя"
-                        class="modal__input modal__input_form_name" required>
-                    <span class="modal__error modal__error-name"></span>
-                    <input type="text" minlength="2" maxlength="200" name="profession"
-                        placeholder="Введите вашу профессию" class="modal__input modal__input_form_profession" required>
-                    <span class="modal__error modal__error-profession"></span>
-                    <button type="submit" class="modal__save">Сохранить</button>
-                </form>
-            </div>
+      <main class="content">
+        <section class="profile">
+          <img src="<%=require("../src/images/profile__img.jpg")%>"
+          class="profile__image" alt="Ваше фото">
+          <div class="profile__content">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button
+              class="profile__editing"
+              type="button"
+              aria-label="Кнопка редактирования"
+            ></button>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+          <button class="profile__button" type="button">+</button>
         </section>
+        <ul class="photo-cards"></ul>
+      </main>
+      <template class="photo-item-template">
+        <li class="photo__cell">
+          <button type="button" class="photo__delete"></button>
+          <img class="photo__image" />
+          <div class="photo__content">
+            <h2 class="photo__title"></h2>
+            <button type="button" class="photo__icon"></button>
+          </div>
+        </li>
+      </template>
 
-        <section class="modal modal_type_add-new-card">
-            <div class="modal__content">
-                <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
-                <h2 class="modal__title">Новое место</h2>
-                <form class="modal__form" name="add-new-card-form" novalidate>
-                    <input type="text" minlength="2" maxlength="200" name="mesto" placeholder="Название"
-                        class="modal__input modal__input_form_mesto" required>
-                    <span class="modal__error modal__error-mesto"></span>
+      <footer class="footer">
+        <p class="footer__title">© 2020 Mesto Russia</p>
+      </footer>
 
-                    <input type="url" name="url" placeholder="Ссылка на картинку"
-                        class="modal__input modal__input_form_url" required>
-                    <span class="modal__error modal__error-url"></span>
-                    <button type="submit" class="modal__save">Создать</button>
-                </form>
-            </div>
-        </section>
+      <section class="modal modal_type_profile">
+        <div class="modal__content">
+          <button
+            class="modal__close"
+            type="button"
+            aria-label="Кнопка закрытия"
+          ></button>
+          <h2 class="modal__title">Редактировать профиль</h2>
+          <form class="modal__form" name="profile-form" novalidate>
+            <input
+              type="text"
+              minlength="2"
+              maxlength="40"
+              name="name"
+              placeholder="Введите ваше Имя"
+              class="modal__input modal__input_form_name"
+              required
+            />
+            <span class="modal__error modal__error-name"></span>
+            <input
+              type="text"
+              minlength="2"
+              maxlength="200"
+              name="profession"
+              placeholder="Введите вашу профессию"
+              class="modal__input modal__input_form_profession"
+              required
+            />
+            <span class="modal__error modal__error-profession"></span>
+            <button type="submit" class="modal__save">Сохранить</button>
+          </form>
+        </div>
+      </section>
 
-        <section class="modal modal_type_photo" aria-label="Фото">
-            <figure class="modal__content modal__content_type_photo">
-                <button class="modal__close" type="button" aria-label="Кнопка закрытия"></button>
-                <img src="<%=require("../src/images/photo__baikal.jpg")%>" class="modal__photo" alt="Байкал">
-                <figcaption class="modal__caption"></figcaption>
-            </figure>
-        </section>
+      <section class="modal modal_type_add-new-card">
+        <div class="modal__content">
+          <button
+            class="modal__close"
+            type="button"
+            aria-label="Кнопка закрытия"
+          ></button>
+          <h2 class="modal__title">Новое место</h2>
+          <form class="modal__form" name="add-new-card-form" novalidate>
+            <input
+              type="text"
+              minlength="2"
+              maxlength="200"
+              name="mesto"
+              placeholder="Название"
+              class="modal__input modal__input_form_mesto"
+              required
+            />
+            <span class="modal__error modal__error-mesto"></span>
 
+            <input
+              type="url"
+              name="url"
+              placeholder="Ссылка на картинку"
+              class="modal__input modal__input_form_url"
+              required
+            />
+            <span class="modal__error modal__error-url"></span>
+            <button type="submit" class="modal__save">Создать</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="modal modal_type_photo" aria-label="Фото">
+        <figure class="modal__content modal__content_type_photo">
+          <button
+            class="modal__close"
+            type="button"
+            aria-label="Кнопка закрытия"
+          ></button>
+          <img src="<%=require("../src/images/photo__baikal.jpg")%>"
+          class="modal__photo" alt="Байкал">
+          <figcaption class="modal__caption"></figcaption>
+        </figure>
+      </section>
     </div>
-
-</body>
-
+  </body>
 </html>

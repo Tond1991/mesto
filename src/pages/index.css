@@ -34,7 +34,6 @@
 @import url(../blocks/photo/__content/photo__content.css);
 @import url(../blocks/photo/__icon/_black/photo__icon_black.css);
 
-
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__title/footer__title.css);
@@ -57,4 +56,3 @@
 @import url(../blocks/modal/__caption/modal__caption.css);
 @import url(../blocks/modal/__photo/modal__photo.css);
 @import url(../blocks/modal/__container/modal__container.css);
-
