@@ -16,16 +16,15 @@
 
       <main class="content">
         <section class="profile">
-          <img src="<%=require("../src/images/profile__img.jpg")%>"
-          class="profile__image" alt="Ваше фото">
+          <div class="profile__image"></div>
           <div class="profile__content">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button
               class="profile__editing"
               type="button"
               aria-label="Кнопка редактирования"
             ></button>
-            <p class="profile__profession">Исследователь океана</p>
+            <p class="profile__profession"></p>
           </div>
           <button class="profile__button" type="button">+</button>
         </section>
@@ -37,7 +36,10 @@
           <img class="photo__image" />
           <div class="photo__content">
             <h2 class="photo__title"></h2>
-            <button type="button" class="photo__icon"></button>
+            <div class="photo__icon-container">
+              <button type="button" class="photo__icon"></button>
+              <p class="photo__icon-counter">0</p>
+          </div>
           </div>
         </li>
       </template>
@@ -75,6 +77,42 @@
               required
             />
             <span class="modal__error modal__error-profession"></span>
+            <button type="submit" class="modal__save">Сохранить</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="modal modal_type_delete-card">
+        <div class="modal__content">
+          <button
+            class="modal__close"
+            type="button"
+            aria-label="Кнопка закрытия"
+          ></button>
+          <h2 class="modal__title modal__title_type_delete">Вы уверены?</h2>
+          <form class="modal__form" name="deleta-card" novalidate>
+          <button type="submit" class="modal__save">Да</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="modal modal_type_edit-avatar">
+        <div class="modal__content">
+          <button
+            class="modal__close"
+            type="button"
+            aria-label="Кнопка закрытия"
+          ></button>
+          <h2 class="modal__title">Обновить аватар</h2>
+          <form class="modal__form" name="avatar-form" novalidate>
+              <input
+              type="url"
+              name="avatar"
+              placeholder="Ссылка на аватар"
+              class="modal__input modal__input_form_avatar"
+              required
+            />
+            <span class="modal__error modal__error-avatar"></span>
             <button type="submit" class="modal__save">Сохранить</button>
           </form>
         </div>
@@ -125,6 +163,8 @@
           <figcaption class="modal__caption"></figcaption>
         </figure>
       </section>
+
+    
     </div>
   </body>
 </html>

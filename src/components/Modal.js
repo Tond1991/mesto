@@ -1,6 +1,7 @@
 export default class Modal {
   constructor(modalSelector) {
     this._modalSelector = modalSelector;
+    this._modalBtn = this._modalSelector.querySelector(".modal__save");
   }
 
   openModal() {
@@ -18,6 +19,13 @@ export default class Modal {
       this.closeModal();
     }
   };
+  loading(isLoading) {
+    if(isLoading) {
+      this._modalBtn.textContent = "Сохранение...";
+    } else {
+      this._modalBtn.textContent = "Сохраненить";
+    }
+  }
 
   setEventListeners() {
     this._modalSelector.addEventListener("mousedown", (evt) => {

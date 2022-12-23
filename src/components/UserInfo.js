@@ -1,7 +1,9 @@
 export default class UserInfo {
-  constructor({ nameSelector, professionSelector }) {
+  constructor({ nameSelector, professionSelector, avatarSelector }) {
     this._name = document.querySelector(nameSelector);
     this._profession = document.querySelector(professionSelector);
+    this._avatar = document.querySelector(avatarSelector);
+
   }
 
   getUserInfo() {
@@ -11,8 +13,13 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo({ username, profession }) {
-    this._name.textContent = username;
-    this._profession.textContent = profession;
+  handleAvatar(formValue) {
+    this._avatar.style.backgroundImage = `url(${formValue.avatar})`;
+  }
+
+  setUserInfo(formValue) {
+    this._name.textContent = formValue.username;
+    this._profession.textContent = formValue.profession;
+    this.handleAvatar(formValue);
   }
 }
