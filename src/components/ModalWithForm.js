@@ -18,6 +18,20 @@ export default class ModalWithForm extends Modal {
     return formValues;
   }
 
+  loading(isLoading) {
+    if(isLoading) {
+      this._modalBtn.textContent = "Сохранение...";
+    } else {
+      this._modalBtn.textContent = "Сохраненить";
+    }
+  }
+
+  setInputValues(data) {
+    this._input.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
+
   closeModal() {
     super.closeModal();
     this._modalForm.reset();
@@ -26,7 +40,6 @@ export default class ModalWithForm extends Modal {
     this._modalForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleSubmitForm(this._getInputValues());
-      this.closeModal();
     });
     super.setEventListeners();
   }

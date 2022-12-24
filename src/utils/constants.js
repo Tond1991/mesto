@@ -10,8 +10,6 @@ const validationConfig = {
 
 const editProfileBtn = document.querySelector(".profile__editing");
 const addNewCardBtn = document.querySelector(".profile__button");
-const photoElementModal = document.querySelector(".modal__photo");
-const captionElementModal = document.querySelector(".modal__caption");
 const photoModal = document.querySelector(".modal_type_photo");
 const removeModal = document.querySelector(".modal_type_delete-card");
 const editAvatarModal = document.querySelector(".modal_type_edit-avatar");
@@ -33,8 +31,6 @@ export {
   addNewCardBtn,
   editProfileModal,
   addNewCardModal,
-  photoElementModal,
-  captionElementModal,
   photoModal,
   nameInpt,
   professionInpt,

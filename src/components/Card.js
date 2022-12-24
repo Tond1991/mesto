@@ -1,15 +1,15 @@
 export default class Card {
-  constructor(data, templateSelector, onPhotoClick, userId, api, {handleRemoveBtn}) {
+  constructor(data, templateSelector, onPhotoClick, userId, {handleRemoveBtn, handleLike}) {
     this._name = data.name;
     this._link = data.link;
     this._ownerId = data.owner._id;
     this._userId = userId;
     this._templateSelector = templateSelector;
     this._onPhotoClick = onPhotoClick;
-    this._api = api;
     this._id = data._id;
-    this._likes = data.likes;
+    this._data = data;
     this._handleRemoveBtn = handleRemoveBtn;
+    this._handleLike = handleLike;
 
   }
 
@@ -26,10 +26,6 @@ export default class Card {
     this._element = null;
   }
 
-  _likeToggle() {
-    this._likeBtn.classList.toggle("photo__icon_black");
-  }
-
   generateCard() {
     this._element = this._getTemplate();
     this._removeBtn = this._element.querySelector(".photo__delete");
@@ -40,36 +36,28 @@ export default class Card {
     this._elementImg.src = this._link;
     this._elementImg.alt = this._name;
     this._elementText.textContent = this._name;
-
       if(this._ownerId !== this._userId) {
         this._removeBtn.style.display = 'none';
       }
+      this.newLike(this._data);
 
-      this._likeCounter.textContent = this._likes.length;
-
-      if(this._likes.some(like => like._id === this._userId)) {
-        this._likeBtn.classList.add("photo__icon_black");
-      }
     this._setListeners();
     return this._element;
   }
 
-  _handleLike() {
-    if(!(this._likeBtn.classList.contains("photo__icon_black"))) {
-      this._api.addLike(this._id)
-      .then((data) => {
-        this._likeBtn.classList.add("photo__icon_black");
-        this._likeCounter.textContent = data.likes.length;
-      })
-    } else {
-      this._api.deleteLike(this._id)
-      .then((data) => {
-        this._likeBtn.classList.remove("photo__icon_black");
-        this._likeCounter.textContent = data.likes.length;
-      })
-    }
+  isLiked() {
+   return this._likes.some(like => like._id === this._userId)
   }
-  
+
+  _toggleLike() {
+    this._likeCounter.textContent = this._likes.length;
+    this._likeBtn.classList.toggle("photo__icon_black", this.isLiked());
+  }
+
+  newLike(data) {
+    this._likes = data.likes;
+    this._toggleLike();
+  }
 
   _handlePhotoClick = () => {
     this._onPhotoClick(this._link, this._name);
@@ -77,11 +65,11 @@ export default class Card {
 
   _setListeners() {
     this._removeBtn.addEventListener("click", () => {
-      this._handleRemoveBtn();
-    });
+      this._handleRemoveBtn()
+          });
 
     this._likeBtn.addEventListener("click", () => {
-      this._handleLike();
+      this._handleLike(this.isLiked());
     });
 
     this._elementImg.addEventListener("click", this._handlePhotoClick);

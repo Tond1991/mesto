@@ -35,29 +35,20 @@ const api = new Api({
 
 let userId;
 
-api
-  .getUserInfo()
-  .then((user) => {
-    userId = user._id;
+
+Promise.all([api.getUserInfo(), api.getInitialCard()])
+.then(([user, cards]) => {
+  userId = user._id;
     profileInfo.setUserInfo({
       username: user.name,
       profession: user.about,
       avatar: user.avatar
     });
-
-    api
-      .getInitialCard()
-      .then((cards) => {
-        itemCreate.renderItems(cards.reverse());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
+    itemCreate.renderItems(cards.reverse())
+})
+.catch((err) => {
+  console.log(err);
+});
 
 const modalOpenPhoto = new ModalWithImage(photoModal);
 modalOpenPhoto.setEventListeners();
@@ -81,6 +72,7 @@ const profileModal = new ModalWithForm(editProfileModal, {
         profession: userData.about,
         avatar: userData.avatar,
       });
+      profileModal.closeModal();
     })
     .catch((err) => {
       console.log(err);
@@ -94,6 +86,8 @@ const profileModal = new ModalWithForm(editProfileModal, {
 profileModal.setEventListeners();
 
 const openProfileModal = (modal) => {
+ /* const { username, profession } = profileInfo.getUserInfo();
+  profileModal.setInputValues({ username, profession });*/
   const { username, profession } = profileInfo.getUserInfo();
   nameInpt.value = username;
   professionInpt.value = profession;
@@ -110,6 +104,7 @@ const avatarModal = new ModalWithForm(editAvatarModal, {
     avatarModal.loading(true);
     api.editAvatar(data).then((userData) => {
       profileInfo.handleAvatar(userData);
+      avatarModal.closeModal();
     })
     .catch((err) => {
       console.log(err);
@@ -135,7 +130,7 @@ const removeModalBtn = new ModalWithRemove(removeModal);
 removeModalBtn.setEventListeners();
 
 const createCard = (data) => {
-  const card = new Card(data, ".photo-item-template", onPhotoClick, userId, api, {
+  const card = new Card(data, ".photo-item-template", onPhotoClick, userId, {
     handleRemoveBtn: () => {
       removeModalBtn.openModal(() => {
         api.deleteCard(data._id).then(() => {
@@ -143,7 +138,26 @@ const createCard = (data) => {
           removeModalBtn.closeModal();
         })
       });
+    },
+  
+    handleLike: (likes) => {
+      if(!likes) {
+        api.addLike(data._id).then((data) => {
+          card.newLike(data)
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      } else {
+        api.deleteLike(data._id).then((data) => {
+          card.newLike(data)
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
     }
+    
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -165,6 +179,7 @@ const cardSubmit = new ModalWithForm(addNewCardModal, {
       itemCreate.addItem(
         createCard(data)
       );
+      cardSubmit.closeModal();
     })
     .catch((err) => {
       console.log(err);
