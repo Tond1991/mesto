@@ -137,6 +137,9 @@ const createCard = (data) => {
           card.deleteCard();
           removeModalBtn.closeModal();
         })
+        .catch(err => {
+          console.log(err);
+        })
       });
     },
   
